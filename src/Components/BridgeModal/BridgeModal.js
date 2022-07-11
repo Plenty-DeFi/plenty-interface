@@ -5,7 +5,7 @@ import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 import truncateMiddle from 'truncate-middle';
 import styles from './BridgeModal.module.scss';
 import Button from '../Ui/Buttons/Button';
-import tezos from '../../assets/images/bridge/tezos.svg';
+// import tezos from '../../assets/images/bridge/tezos.svg';
 import '../../assets/scss/animation.scss';
 import switchImg from '../../assets/images/bridge/bridge-switch.svg';
 import switchImgDark from '../../assets/images/bridge/bridge-switch-dark.svg';
@@ -25,6 +25,11 @@ import { getActionRequiredCount } from '../../apis/bridge/bridgeAPI';
 import { titleCase } from '../TransactionHistory/helpers';
 import fromExponential from 'from-exponential';
 import BigNumber from 'bignumber.js';
+import selectbridge from '../../assets/images/bridge/selectbridge.svg';
+import selectbridgeDark from '../../assets/images/bridge/selectbridgeDark.svg';
+import arrowbridge from '../../assets/images/bridge/arrowbridge.svg';
+import arrowbridgeDark from '../../assets/images/bridge/arrowbridgedark.svg';
+import SelectorModalBridge from '../Bridges/SelectorModalBridge';
 const BridgeModal = (props) => {
   const dispatch = useDispatch();
   const [errorMessage, setErrorMessage] = useState(null);
@@ -32,12 +37,12 @@ const BridgeModal = (props) => {
   const [showMetamaskTooltip, setShowMetamaskTooltip] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [show, setShow] = useState(false);
+  const [showChain, setShowChain] = useState(false);
   const [userBalances, setUserBalances] = useState({});
   const [isLoading, SetisLoading] = useState(false);
   const [isTokenInSelected, setIsTokenInSelected] = useState(false);
   const [isBridgeSelected, setIsBridgeSelected] = useState(false);
   const [isTokenSelected, setIsTokenSelected] = useState(false);
-  const [isBridgeClicked, setIsBridgeClicked] = useState(false);
   const [pendingTransCount, setPendingTransCount] = useState(0);
   const [animationClass, setAnimationClass] = useState('leftToRightFadeInAnimation-4-bridge');
   const [isHistoryLoading, setIsHistoryLoading] = useState(true);
@@ -83,7 +88,7 @@ const BridgeModal = (props) => {
     image: fromBridge.image,
     buttonImage: fromBridge.buttonImage,
   });
-  
+
   useEffect(() => {
     if (currentChain !== metamaskChain && transaction === 1) {
       if (metamaskChain !== null) {
@@ -162,7 +167,9 @@ const BridgeModal = (props) => {
         if (balanceResult.success) {
           setUserBalances((prevState) => ({
             ...prevState,
-            [tokenIn.name]: new BigNumber(balanceResult.balance).div(new BigNumber(10).pow(tokenIn.tokenData.DECIMALS)).toString(),
+            [tokenIn.name]: new BigNumber(balanceResult.balance)
+              .div(new BigNumber(10).pow(tokenIn.tokenData.DECIMALS))
+              .toString(),
           }));
         } else {
           setUserBalances((prevState) => ({ ...prevState, [tokenIn.name]: -1 }));
@@ -358,10 +365,10 @@ const BridgeModal = (props) => {
 
   const handleClose = () => {
     setShow(false);
-    setIsBridgeClicked(false);
+    setShowChain(false);
     setSearchQuery('');
   };
-  
+
   const handleInputFocus = () => {
     setIsError(false);
     setIsTokenInSelected(true);
@@ -375,7 +382,7 @@ const BridgeModal = (props) => {
     setFirstTokenAmount('');
     setSecondTokenAmount('');
     setFee(0);
-    if (bridge.name === 'TEZOS') {
+    /* if (bridge.fromTokenName === 'TEZOS') {
       const currentFrom = {
         name: fromBridge.name,
         image: fromBridge.image,
@@ -391,24 +398,47 @@ const BridgeModal = (props) => {
       setOperation('UNBRIDGE');
     } else {
       setConnectBrigeWallet({
-        name: bridge.name,
-        image: bridge.image,
-        buttonImage: bridge.buttonImage,
+        name: bridge.fromTokenName,
+        image: bridge.fromTokenImage,
+        buttonImage: bridge.buttonImage1,
       });
       if (operation === 'UNBRIDGE') {
         setToBridge({ name: 'TEZOS', image: tezos, buttonImage: '' });
         setOperation('BRIDGE');
       }
+    } */
+    if (bridge.fromTokenName === 'TEZOS') {
+      setOperation('UNBRIDGE');
+      setConnectBrigeWallet({
+        name: bridge.toTokenName,
+        image: bridge.toTokenImage,
+        buttonImage: bridge.buttonImage,
+      });
+    } else {
+      setOperation('BRIDGE');
+      setConnectBrigeWallet({
+        name: bridge.fromTokenName,
+        image: bridge.fromTokenImage,
+        buttonImage: bridge.buttonImage,
+      });
     }
-    setFromBridge({ name: bridge.name, image: bridge.image, buttonImage: bridge.buttonImage });
+    setToBridge({
+      name: bridge.toTokenName,
+      image: bridge.toTokenImage,
+      buttonImage: bridge.buttonImage2,
+    });
+    setFromBridge({
+      name: bridge.fromTokenName,
+      image: bridge.fromTokenImage,
+      buttonImage: bridge.buttonImage1,
+    });
     setIsBridgeSelected(true);
     handleClose();
   };
 
   const handleBridgeSelect = () => {
     selector.current = 'BRIDGES';
-    setIsBridgeClicked(true);
-    setShow(true);
+    setShowChain(true);
   };
 
   const selectToken = (token) => {
@@ -514,10 +544,7 @@ const BridgeModal = (props) => {
                 {metamaskAddress && (
                   <OverlayTrigger
                     overlay={(props) => (
-                      <Tooltip
-                        className="connect-wallet-tooltip wallet-message-tooltip"
-                        {...props}
-                      >
+                      <Tooltip className="connect-wallet-tooltip wallet-message-tooltip" {...props}>
                         Disconnect Ethereum wallets through wallet.
                       </Tooltip>
                     )}
@@ -530,6 +557,11 @@ const BridgeModal = (props) => {
                       '...',
                     )})`}</span>
                   </OverlayTrigger>
+                )}
+                {metamaskAddress && (
+                  <span>
+                    <img src={operation === 'UNBRIDGE' ? toBridge.image : fromBridge.image} className={`ml-2 ${styles.walletIcon}`} />
+                  </span>
                 )}
               </p>
               {walletAddress &&
@@ -554,31 +586,55 @@ const BridgeModal = (props) => {
                   </p>
                 ))}
             </div>
-            <div className={`mb-2 ${styles.lineBottom} `}></div>
-            <div className={`mt-4 ${styles.from}`}>From</div>
-            <div className={`mt-2 ${styles.fromBridgeSelectBox}`}>
-              <div>
-                <p className={`mb-1 ${styles.fromLabelTop}`}>Select blockchain </p>
-                <p className={`mb-0 ${styles.fromLabelBottom}`}>Start the bridge process</p>
+            <div className={`mb-3 ${styles.lineBottom} `}></div>
+
+            <div className={` ${styles.fromBridgeSelectBox}`}>
+              <div className={`${styles.selectTokenWrapper} align-items-center`}>
+                <div className={`${styles.selectBridgeIcon}`}>
+                  <img
+                    className={`${styles.selectBridgeIconSvg}`}
+                    src={theme === 'light' ? selectbridge : selectbridgeDark}
+                    alt={'select-bridge'}
+                  />
+                </div>
+                <div className={` ${styles.fromLabelTop}`}>Select bridge: </div>
               </div>
+              <div className={`${styles.dividerSelectBridge}`}></div>
               <div
                 className={clsx(
-                  styles.bridgeSelector,
-                  styles.selector,
-                  isBridgeClicked && styles.fromBridgeClicked,
+                  'd-flex align-items-center justify-content-between',
+                  styles.selectBridgeTop,
                 )}
                 onClick={handleBridgeSelect}
-                style={{ boxShadow: isBridgeSelected && 'none' }}
+                style={{ boxShadow: isBridgeSelected && 'none', cursor: 'pointer' }}
               >
-                <img src={fromBridge.image} className="button-logo" />
-                <span>{titleCase(fromBridge.name)} </span>
-                <span className="span-themed material-icons-round" style={{ fontSize: '20px' }}>
-                  expand_more
-                </span>
+                <div className={`${styles.tokenimageWrapper}`}>
+                  <img src={fromBridge.image} className={styles.buttonLogo} />
+                  <span>{titleCase(fromBridge.name)} </span>
+                </div>
+                <div>
+                  <img
+                    className={`${styles.arrowBridgeSvg}`}
+                    src={theme === 'light' ? arrowbridge : arrowbridgeDark}
+                    alt={'arrow-bridge'}
+                  />
+                </div>
+                <div className={`${styles.tokenimageWrapper}`}>
+                  <img src={toBridge.image} className={styles.buttonLogo} />
+                  <span>{titleCase(toBridge.name)} </span>
+                </div>
+                <div className={`${styles.expandMoreWrapper}`}>
+                  <span
+                    className={`span-themed material-icons-round ${styles.expandMoreSelectBridge}`}
+                    style={{ fontSize: '20px' }}
+                  >
+                    expand_more
+                  </span>
+                </div>
               </div>
             </div>
             <div className={`my-3 ${styles.lineMid} `}></div>
-            <p className={styles.midLabel}>Select your token and enter the amount</p>
+            <p className={styles.midLabel}>Choose your token and enter the amount</p>
             <div
               className={`mt-2 ${styles.tokenSelectBox} ${
                 isTokenInSelected && styles.tokenInSelected
@@ -644,9 +700,9 @@ const BridgeModal = (props) => {
               </div>
             </OverlayTrigger>
 
-            <div className={`mt-2 ${styles.to}`}>To</div>
+            {/* <div className={`mt-2 ${styles.to}`}>To</div> */}
             <div
-              className={`mt-2 ${styles.toBridgeSelectBox} ${styles.inputSelectBox} ${
+              className={`mt-3 ${styles.toBridgeSelectBox} ${styles.inputSelectBox} ${
                 isTokenInSelected ? styles.toBridgeSelected : null
               }`}
             >
@@ -713,7 +769,9 @@ const BridgeModal = (props) => {
                   <div className={clsx('connect-wallet-btn')}>
                     <div className="flex flex-row align-items-center">
                       <connectBridgeWallet.buttonImage />
-                      <span className="ml-2">Connect to {titleCase(connectBridgeWallet.name)} wallet</span>
+                      <span className="ml-2">
+                        Connect to {titleCase(connectBridgeWallet.name)} wallet
+                      </span>
                     </div>
                   </div>
                 </Button>
@@ -721,7 +779,14 @@ const BridgeModal = (props) => {
             ) : (
               <>
                 <Button
-                  className={clsx('px-md-3', 'mt-3', 'w-100', 'connect-wallet-btn', 'button-bg', firstTokenAmount === '' ? styles.disabledProceedButton : '')}
+                  className={clsx(
+                    'px-md-3',
+                    'mt-3',
+                    'w-100',
+                    'connect-wallet-btn',
+                    'button-bg',
+                    firstTokenAmount === '' ? styles.disabledProceedButton : '',
+                  )}
                   onClick={handelClickWithMetaAddedBtn}
                   loading={isLoading}
                 >
@@ -739,11 +804,19 @@ const BridgeModal = (props) => {
       <SelectorModal
         show={show}
         onHide={handleClose}
-        selectToken={selector.current === 'BRIDGES' ? selectBridge : selectToken}
-        tokens={selector.current === 'BRIDGES' ? bridgesList : [...tokenList].sort((a, b) => a.name.localeCompare(b.name))}
+        selectToken={selectToken}
+        tokens={[...tokenList].sort((a, b) => a.name.localeCompare(b.name))}
         searchQuery={searchQuery}
         setSearchQuery={setSearchQuery}
-        title={selector.current === 'BRIDGES' ? 'Select a chain' : 'Select a token'}
+        title={'Select a token'}
+        selector={selector.current}
+      />
+      <SelectorModalBridge
+        show={showChain}
+        onHide={handleClose}
+        selectBridge={selectBridge}
+        tokens={bridgesList}
+        title={'Select a bridge'}
         selector={selector.current}
       />
     </div>

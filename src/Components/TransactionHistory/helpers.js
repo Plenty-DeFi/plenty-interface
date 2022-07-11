@@ -5,9 +5,33 @@ export const filterData = (originalData, checkBoxesState) => {
       (checkBoxState) => checkBoxState,
     ).length;
     const dataToFilter = [...originalData];
+    const filteredData = [];
     if (checkedCount === 0 || checkedCount === 3) {
       return dataToFilter;
-    } else if (checkedCount === 1) {
+    } else {
+      if (checkBoxesState['TO_TEZOS']) {
+        dataToFilter.forEach((transaction) => {
+          if(transaction.operation === 'BRIDGE' && transaction.currentProgress === 3) {
+            filteredData.push(transaction);
+          }
+        });
+      }
+      if (checkBoxesState['FROM_TEZOS']) {
+        dataToFilter.forEach((transaction) => {
+          if(transaction.operation === 'UNBRIDGE' && transaction.currentProgress === 3) {
+            filteredData.push(transaction);
+          }
+        });
+      }
+      if (checkBoxesState['ACTION_REQUIRED']) {
+        dataToFilter.forEach((transaction) => {
+          if(transaction.currentProgress !== 3) {
+            filteredData.push(transaction);
+          }
+        });
+      }
+      return filteredData;
+    } /* else if (checkedCount === 1) {
       return dataToFilter.filter((transaction) => {
         if (checkBoxesState['TO_TEZOS']) {
           return transaction.operation === 'BRIDGE' && transaction.currentProgress === 3;
@@ -35,7 +59,7 @@ export const filterData = (originalData, checkBoxesState) => {
             transaction.operation === 'UNBRIDGE' || transaction.currentProgress !== 3,
         );
       }
-    }
+    } */
   };
 
   export const sortData = (filteredData, radioSelected) => {

@@ -116,6 +116,10 @@
   width: 26px;
   margin-right: 18px;
 }
+.select-token-img-bridge {
+  width: 18px;
+  margin-right: 8px;
+}
 
 .new-badge-icon {
   position: absolute;
@@ -132,4 +136,19 @@
   color: #23c159;
   text-align: center;
   padding: 4px 10px;
+}
+.selectionAlignment {
+  margin-left: 26px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 17px;
+  letter-spacing: 0px;
+  color: var(--theme-header-text);
+}
+.chain-topic {
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 17px;
+  letter-spacing: 0px;
+  color: #8a92b2;
 }

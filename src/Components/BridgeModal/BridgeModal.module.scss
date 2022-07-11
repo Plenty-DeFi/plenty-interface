@@ -26,8 +26,12 @@
 
 .bridgeModal {
   box-shadow: var(--theme-swap-boxshadow);
-  background: linear-gradient(180deg, var(--theme-bridge-main-bg-1) 60%, var(--theme-bridge-main-bg-2) 0%);
-  border:1px solid var(--theme-bridge-history-border);
+  background: linear-gradient(
+    180deg,
+    var(--theme-bridge-main-bg-1) 58.5%,
+    var(--theme-bridge-main-bg-2) 0%
+  );
+  border: 1px solid var(--theme-bridge-history-border);
   border-radius: 16px;
   padding: 24px 24px;
   margin: auto;
@@ -72,7 +76,7 @@
     }
     .pendingHistory {
       background: rgba(255, 157, 157, 0.1);
-      color: #FF5A5A;
+      color: #ff5a5a;
     }
   }
   .heading {
@@ -180,7 +184,7 @@
   @media screen and (min-width: 320px) and (max-width: 767px) {
     width: 42px;
     height: 42px;
-    >img {
+    > img {
       width: 30px;
       height: 30px;
     }
@@ -251,32 +255,112 @@
 }
 
 .fromBridgeSelectBox {
-  min-height: 54px;
+  min-height: 56px;
   display: flex;
-  justify-content: space-between;
+  //justify-content: space-between;
   flex-wrap: wrap;
   align-items: center;
-  background-color: var(--theme-bridge-from-ip-bg);
   mix-blend-mode: normal;
-  padding: 8px 12px 8px 20px;
+  border: 0.803667px solid var(--theme-select-bridge-border);
+  box-shadow: 0px 4px 9px rgba(39, 59, 74, 0.06);
+  padding-left: 12px;
+  padding-right: 12px;
   box-sizing: border-box;
-  border-radius: 8px;
+  border-radius: 16px;
+  background: var(--theme-select-bridge-bg);
 }
-
-.fromLabelTop {
-  font-weight: 500;
+.dividerSelectBridge {
+  height: 56px;
+  border-right: 0.803667px solid var(--theme-select-bridge-border);
+  margin-left: 12px;
+  margin-right: 12px;
+  @media screen and (min-width: 320px) and (max-width: 767px) {
+    margin-left: 8px;
+    margin-right: 8px;
+  }
+}
+.selectBridgeTop {
+  width: 67%;
+  justify-content: space-between;
+  @media screen and (min-width: 320px) and (max-width: 767px) {
+    width: 68%;
+  }
+}
+.tokenimageWrapper {
+  background: var(--theme-bridge-tokenwrapper);
+  border-radius: 16px;
+  padding: 8px 12px;
+  color: var(--theme-banner-text);
   font-size: 14px;
-  line-height: 17px;
-  color: var(--theme-bridge-chain-sel-text);
+  font-weight: 500;
+  line-height: 18px;
+  letter-spacing: 0em;
+  @media screen and (min-width: 320px) and (max-width: 767px) {
+    padding: 7px 8px;
+  }
 }
-
+.expandMoreWrapper {
+  background: var(--theme-expandmore-background);
+  border-radius: 30px;
+  height: 32px;
+  width: 32px;
+  cursor: pointer;
+  @media screen and (min-width: 320px) and (max-width: 767px) {
+    height: 28px;
+    width: 28px;
+  }
+}
+.expandMoreSelectBridge {
+  position: relative;
+  top: 6px;
+  left: 6px;
+  @media screen and (min-width: 320px) and (max-width: 767px) {
+    top: 4.5px;
+    left: 4.5px;
+  }
+}
+.buttonLogo {
+  width: 22px;
+  margin-right: 4px;
+  @media screen and (min-width: 320px) and (max-width: 767px) {
+    width: 16px;
+  }
+}
+.selectBridgeIcon {
+  width: 22px;
+  height: 22px;
+  background: var(--theme-bridge-icon-bg);
+  border-radius: 27.5px;
+}
+.selectBridgeIconSvg {
+  margin-bottom: 5px;
+  margin-left: 5px;
+}
+.fromLabelTop {
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 15px;
+  letter-spacing: 0px;
+  margin-left: 8px;
+  color: var(--theme-bridge-chain-sel-text);
+  @media screen and (min-width: 320px) and (max-width: 767px) {
+    margin-left: 0px;
+  }
+}
+.walletIcon {
+  width: 20px;
+}
 .fromLabelBottom {
   font-weight: 500;
   font-size: 12px;
   line-height: 17px;
   color: var(--theme-bridge-chain-sel-subtext);
 }
-
+.selectTokenWrapper {
+  @media screen and (min-width: 767px) {
+    display: flex;
+  }
+}
 .selector {
   background: var(--theme-bridge-selector-bg);
   mix-blend-mode: normal;
@@ -293,8 +377,8 @@
   cursor: pointer;
 }
 
-.bridgeSelector, .toTokenSelector {
-  
+.bridgeSelector,
+.toTokenSelector {
   &.not-selected {
     padding: 10px 6px;
     background-color: #ffffff;
@@ -326,7 +410,7 @@
   font-weight: 500;
   font-size: 12px;
   line-height: 16px;
-  color: #FF5A43;
+  color: #ff5a43;
   margin: 10px 0 0;
 }
 
@@ -351,7 +435,7 @@
   color: var(--theme-text-1);
   padding: 11px 12px;
 
-  >img {
+  > img {
     margin-right: 4px;
     height: 18px;
     width: 18px;
@@ -397,7 +481,7 @@
   justify-content: space-between;
   flex-wrap: wrap;
   align-items: center;
-  background-color:  var(--theme-bridge-to-ip-bg);
+  background-color: var(--theme-bridge-to-ip-bg);
   mix-blend-mode: normal;
   padding: 15px;
   border: 1px solid var(--theme-bridge-to-ip-border);
@@ -426,7 +510,7 @@
     font-weight: 700;
     font-size: 24px;
     line-height: 31px;
-    color:var(--theme-bridge-max-btn-border-text);
+    color: var(--theme-bridge-max-btn-border-text);
   }
   @media screen and (min-width: 320px) and (max-width: 767px) {
     width: 102px;
@@ -451,7 +535,7 @@
     background-color: var(--theme-tooltip-bg) !important;
   }
   &::after {
-    content: "";
+    content: '';
     position: absolute;
     top: 50%;
     right: 100%;
@@ -465,7 +549,7 @@
 .toTokenSelector {
   height: 40px;
   padding: 8px 14px;
-  >img {
+  > img {
     margin-right: 4px;
     height: 18px;
     width: 18px;
@@ -487,20 +571,20 @@
 
 .inputError {
   background: rgba(255, 90, 67, 0.05);
-  border: 0.734783px solid #FF5A43;
+  border: 0.734783px solid #ff5a43;
   &:hover {
     background: rgba(255, 90, 67, 0.05);
-    border: 0.734783px solid #FF5A43;
+    border: 0.734783px solid #ff5a43;
   }
   .tokenUserInput {
     color: rgba(255, 90, 67, 0.5);
-    &::placeholder{
+    &::placeholder {
       color: rgba(255, 90, 67, 0.5);
     }
   }
 }
 
-.bridgeSelector{
+.bridgeSelector {
   height: 60px;
   font-size: 16px;
   line-height: 21px;
@@ -508,7 +592,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  >img {
+  > img {
     margin-right: 4px;
     height: 24px;
     width: 24px;
@@ -533,7 +617,7 @@
 }
 
 .balanceValue {
-  color:var(--theme-bridge-max-btn-border-text);
+  color: var(--theme-bridge-max-btn-border-text);
   font-weight: 700;
   cursor: pointer;
 }
@@ -543,7 +627,7 @@
   margin-bottom: 2px;
 }
 
-.toBridgeSelected { 
+.toBridgeSelected {
   box-shadow: var(--theme-bridge-main-to-box-shadow);
 }
 
@@ -563,5 +647,3 @@
 .disabledProceedButton {
   background-color: var(--theme-swap-disable-button) !important;
 }
-
-

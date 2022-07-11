@@ -49,7 +49,7 @@ export const darkTheme = {
   bgAlt: '#252146',
   backgroundLight: '#343052',
   borderDarkNone: 'none',
-  border: '1px solid rgba(44, 9, 11, 0.08)',
+  border: '1px solid rgba(255, 255, 255, 0.15)',
   btnFrontPage: '#19263A',
   dropdownThemed: '#514b6b',
   dropdownThemedHighlight: '#5e6884',

@@ -7,10 +7,11 @@ const providerOptions = {
   walletconnect: {
     package: WalletConnectProvider,
     options: {
-      supportedChainIds: [1, 4, 100],
+      supportedChainIds: [1, 4, 100, 80001],
       rpc: {
         1: 'https://api.mycryptoapi.com/eth',
         4: 'https://rinkeby.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161',
+        80001: 'https://rpc-mumbai.maticvigil.com/v1/f4d21a1974e4ed58212a0047ebda2058d80e5ec1',
       },
     },
   },
@@ -63,6 +64,7 @@ export const connectWallet = async (setMetamaskAddress, theme) => {
       success: true,
     };
   } catch (e) {
+    console.log(e);
     if (setMetamaskAddress) {
       localStorage.setItem('isWalletConnected', false);
       setMetamaskAddress(null);

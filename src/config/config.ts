@@ -8,7 +8,7 @@ const Config: IConfig = {
     tezToolTokenPrice: 'https://api.teztools.io/token/prices',
   },
   RPC_NODES: {
-    testnet: 'https://ithacanet.smartpy.io/',
+    testnet: 'https://ghostnet.smartpy.io/',
     mainnet: 'https://tezos-prod.cryptonomic-infra.tech/',
   },
   TZKT_NODES: {
@@ -4455,7 +4455,7 @@ const Config: IConfig = {
     mapId: 55983,
   },
   NETWORK: 'testnet',
-  WALLET_NETWORK: 'ithacanet',
+  WALLET_NETWORK: 'ghostnet',
   // NETWORK: 'mainnet',
   // WALLET_NETWORK: 'mainnet',
   ADMIN_ADDRESS: 'KT1GpTEq4p2XZ8w9p5xM7Wayyw5VR7tb3UaW',
@@ -4761,6 +4761,7 @@ const Config: IConfig = {
   BRIDGES_INDEXER_LINKS: {
     testnet: {
       RINKEBY: 'https://bridgeindexer.plentydefi.com/v1/configuration',
+      MUMBAI: 'https://bridgepolygontestnetindexer.plentydefi.com/configuration',
     },
     mainnet: {
       ETHEREUM: 'https://indexer.app.tzwrap.com/v1/configuration',
@@ -4770,6 +4771,7 @@ const Config: IConfig = {
     RINKEBY: 'https://rinkeby.etherscan.io/tx/',
     ETHEREUM: 'https://etherscan.io/tx/',
     TEZOS: 'https://ithacanet.tzkt.io/',
+    MUMBAI: 'https://mumbai.polygonscan.com/',
   },
 };
 

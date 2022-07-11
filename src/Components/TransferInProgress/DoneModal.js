@@ -56,7 +56,6 @@ const DoneModal = (props) => {
      setTimeout(() => {
       setShowTwitterFlash(true);
      }, 3000);
-     console.log('Twitter enabled');
    }
   }, [showTwitter]);
 

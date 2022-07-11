@@ -6,6 +6,7 @@ import CONFIG from '../../config/config';
 const TOKEN_FILTER = {
   RINKEBY: ['USDC', 'MATIC'],
   ETHEREUM: ['WBTC','WETH','BUSD','USDC','USDT','MATIC','LINK','DAI'],
+  MUMBAI: ['WMATIC'],
 };
 
 export const loadConfiguration = async () => {
