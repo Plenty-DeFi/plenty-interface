@@ -216,6 +216,28 @@ const Config: IConfig = {
           ],
           inactive: [],
         },
+        'kUSD - USDt': {
+          active: [
+            {
+              address: 'KT1EQ9RzjVNozWTTbuHPFsoaHDFiP4nMBRGA',
+              mapId: 231218,
+              decimal: 18,
+              tokenDecimal: 12,
+            },
+          ],
+          inactive: [],
+        },
+        'uUSD - USDt': {
+          active: [
+            {
+              address: 'KT1BQgGMe4PECmbFK1kyEdJmoXyJeCWf8XzC',
+              mapId: 231220,
+              decimal: 18,
+              tokenDecimal: 9,
+            },
+          ],
+          inactive: [],
+        },
         'USDT.e - USDC.e': {
           active: [
             {
@@ -1075,6 +1097,22 @@ const Config: IConfig = {
         tokenId: 0,
       },
 
+      'kUSD - USDt': {
+        address: 'KT1JaYzZooZmq9JP9FScjLShbUco8Pn8Ckct',
+        mapId: 231140,
+        decimal: 12,
+        type: 'FA1.2',
+        tokenId: 0,
+      },
+
+      'uUSD - USDt': {
+        address: 'KT1Doix5iZZsQzKY3ANDkoca6GfCtJbXY9sk',
+        mapId: 231143,
+        decimal: 9,
+        type: 'FA1.2',
+        tokenId: 0,
+      },
+
       'EURL - agEUR.e': {
         address: 'KT1X4fkZ1f3uCpBqC1HZemsSNFbqm6bkpgfb',
         mapId: 210417,
@@ -1631,6 +1669,12 @@ const Config: IConfig = {
             liquidityToken: 'usdc.e-uusd-LP',
             type: 'veStableAMM',
           },
+          USDt: {
+            contract: 'KT19XPttmgtKtnpKXbcn41AqbcUqX7cweAmu',
+            property: 'token2_pool',
+            liquidityToken: 'uUSD-USDt-LP',
+            type: 'veStableAMM',
+          },
         },
       },
       tzBTC: {
@@ -1663,6 +1707,12 @@ const Config: IConfig = {
             contract: 'KT1HgFcDE8ZXNdT1aXXKpMbZc6GkUS2VHiPo',
             property: 'token2_pool',
             liquidityToken: 'usdc.e-kusd-LP',
+            type: 'veStableAMM',
+          },
+          USDt: {
+            contract: 'KT1XfZi2K6gVM3wXDyeCwMhaT88JueVEAB8r',
+            property: 'token2_pool',
+            liquidityToken: 'kUSD-USDt-LP',
             type: 'veStableAMM',
           },
         },
@@ -1875,6 +1925,53 @@ const Config: IConfig = {
           },
         },
       },
+
+      USDt: {
+        ICON: '',
+        TOKEN_CONTRACT: 'KT1XnTn74bUtxHfDtBmm2bGZAQfhPbvKWR8o',
+        mapId: 198031,
+        READ_TYPE: 'FA2',
+        CALL_TYPE: 'FA2',
+        TOKEN_ID: 0,
+        TOKEN_DECIMAL: 6,
+        DEX_PAIRS: {
+          'kUSD': {
+            contract: 'KT1XfZi2K6gVM3wXDyeCwMhaT88JueVEAB8r',
+            property: 'token1_pool',
+            liquidityToken: 'kUSD-USDt-LP',
+            type: 'veStableAMM',
+          },
+          'uUSD': {
+            contract: 'KT19XPttmgtKtnpKXbcn41AqbcUqX7cweAmu',
+            property: 'token1_pool',
+            liquidityToken: 'uUSD-USDt-LP',
+            type: 'veStableAMM',
+          },
+        },
+      },
+
+      'kUSD-USDt-LP': {
+        ICON: '',
+        TOKEN_CONTRACT: 'KT1JaYzZooZmq9JP9FScjLShbUco8Pn8Ckct',
+        mapId: 231140,
+        READ_TYPE: 'FA1.2',
+        TOKEN_ID: 0,
+        TOKEN_DECIMAL: 12,
+        CALL_TYPE: 'FA1.2',
+        DEX_PAIRS: {},
+      },
+
+      'uUSD-USDt-LP': {
+        ICON: '',
+        TOKEN_CONTRACT: 'KT1Doix5iZZsQzKY3ANDkoca6GfCtJbXY9sk',
+        mapId: 231143,
+        READ_TYPE: 'FA1.2',
+        TOKEN_ID: 0,
+        TOKEN_DECIMAL: 9,
+        CALL_TYPE: 'FA1.2',
+        DEX_PAIRS: {},
+      },
+
 
       'eurl-agEUR.e-LP': {
         ICON: '',
@@ -2671,6 +2768,12 @@ const Config: IConfig = {
             liquidityToken: 'ctez-uusd-lp',
             type: 'oldAMM',
           },
+          USDt: {
+            contract: 'KT19XPttmgtKtnpKXbcn41AqbcUqX7cweAmu',
+            property: 'token2_pool',
+            liquidityToken: 'uUSD-USDt-LP',
+            type: 'veStableAMM',
+          },
         },
       },
       uDEFI: {
@@ -3110,6 +3213,12 @@ const Config: IConfig = {
             liquidityToken: 'ctez-kusd-lp',
             type: 'oldAMM',
           },
+          USDt: {
+            contract: 'KT1XfZi2K6gVM3wXDyeCwMhaT88JueVEAB8r',
+            property: 'token2_pool',
+            liquidityToken: 'kUSD-USDt-LP',
+            type: 'veStableAMM',
+          },
         },
       },
       hDAO: {
@@ -3541,6 +3650,52 @@ const Config: IConfig = {
             type: 'veStableAMM',
           },
         },
+      },
+
+      USDt: {
+        ICON: '',
+        TOKEN_CONTRACT: 'KT1XnTn74bUtxHfDtBmm2bGZAQfhPbvKWR8o',
+        mapId: 198031,
+        READ_TYPE: 'FA2',
+        CALL_TYPE: 'FA2',
+        TOKEN_ID: 0,
+        TOKEN_DECIMAL: 6,
+        DEX_PAIRS: {
+          'kUSD': {
+            contract: 'KT1XfZi2K6gVM3wXDyeCwMhaT88JueVEAB8r',
+            property: 'token1_pool',
+            liquidityToken: 'kUSD-USDt-LP',
+            type: 'veStableAMM',
+          },
+          'uUSD': {
+            contract: 'KT19XPttmgtKtnpKXbcn41AqbcUqX7cweAmu',
+            property: 'token1_pool',
+            liquidityToken: 'uUSD-USDt-LP',
+            type: 'veStableAMM',
+          },
+        },
+      },
+
+      'kUSD-USDt-LP': {
+        ICON: '',
+        TOKEN_CONTRACT: 'KT1JaYzZooZmq9JP9FScjLShbUco8Pn8Ckct',
+        mapId: 231140,
+        READ_TYPE: 'FA1.2',
+        TOKEN_ID: 0,
+        TOKEN_DECIMAL: 12,
+        CALL_TYPE: 'FA1.2',
+        DEX_PAIRS: {},
+      },
+
+      'uUSD-USDt-LP': {
+        ICON: '',
+        TOKEN_CONTRACT: 'KT1Doix5iZZsQzKY3ANDkoca6GfCtJbXY9sk',
+        mapId: 231143,
+        READ_TYPE: 'FA1.2',
+        TOKEN_ID: 0,
+        TOKEN_DECIMAL: 9,
+        CALL_TYPE: 'FA1.2',
+        DEX_PAIRS: {},
       },
 
       'eurl-agEUR.e-LP': {
@@ -4652,6 +4807,54 @@ const Config: IConfig = {
             DECIMAL: 18,
             withdrawalFeeType: 'type2',
             liquidityLink: '/liquidity/add?tokenA=EURL&tokenB=agEUR.e',
+            message: '😍 New farm',
+            bannerType: 'info',
+            isDualFarm: false,
+            farmType: 'veStableAMM',
+          },
+        ],
+        inactive: [],
+      },
+
+      'kUSD - USDt': {
+        active: [
+          {
+            LP_TOKEN: 'KT1JaYzZooZmq9JP9FScjLShbUco8Pn8Ckct',
+            CONTRACT: 'KT1EQ9RzjVNozWTTbuHPFsoaHDFiP4nMBRGA',
+            DEX: 'KT1XfZi2K6gVM3wXDyeCwMhaT88JueVEAB8r',
+            TOKEN_ADDRESS: 'KT1GRSvLoikDsXujKgZPsGLX8k8VvR2Tq95b',
+            CARD_TYPE: 'kUSD / USDt LP',
+            TOKEN_DECIMAL: 12,
+            TYPE: 'FA1.2',
+            LP_DECIMAL: 12,
+            TEMP_ADDRESS: 'KT1GRSvLoikDsXujKgZPsGLX8k8VvR2Tq95b',
+            DECIMAL: 18,
+            withdrawalFeeType: 'type2',
+            liquidityLink: '/liquidity/add?tokenA=kUSD&tokenB=USDt',
+            message: '😍 New farm',
+            bannerType: 'info',
+            isDualFarm: false,
+            farmType: 'veStableAMM',
+          },
+        ],
+        inactive: [],
+      },
+
+      'uUSD - USDt': {
+        active: [
+          {
+            LP_TOKEN: 'KT1Doix5iZZsQzKY3ANDkoca6GfCtJbXY9sk',
+            CONTRACT: 'KT1BQgGMe4PECmbFK1kyEdJmoXyJeCWf8XzC',
+            DEX: 'KT19XPttmgtKtnpKXbcn41AqbcUqX7cweAmu',
+            TOKEN_ADDRESS: 'KT1GRSvLoikDsXujKgZPsGLX8k8VvR2Tq95b',
+            CARD_TYPE: 'uUSD / USDt LP',
+            TOKEN_DECIMAL: 9,
+            TYPE: 'FA1.2',
+            LP_DECIMAL: 9,
+            TEMP_ADDRESS: 'KT1GRSvLoikDsXujKgZPsGLX8k8VvR2Tq95b',
+            DECIMAL: 18,
+            withdrawalFeeType: 'type2',
+            liquidityLink: '/liquidity/add?tokenA=uUSD&tokenB=USDt',
             message: '😍 New farm',
             bannerType: 'info',
             isDualFarm: false,

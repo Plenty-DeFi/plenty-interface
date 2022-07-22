@@ -72,6 +72,10 @@ import USDtzUSDCe from '../assets/images/farms/USDtzUSDCe.png';
 import usdteusdce from '../assets/images/farms/usdteusdce.png';
 import EURlagEURe from '../assets/images/farms/EURlagEURe.png';
 
+import uusdusdt from '../assets/images/farms/uUSDUSDT.png';
+
+import kusdusdt from '../assets/images/farms/kUSDUSDT.png';
+
 export const FARMS_CARD_DATA_PROPTYPES = PropTypes.shape({
   farmData: PropTypes.shape({
     LP_TOKEN: PropTypes.string,
@@ -179,6 +183,48 @@ export const FARMS_CARD_TYPE_LIST = {
     fee: '0%',
     earned: 0,
     deposit: 'CTEZ / DOGA LP',
+    liquidity: 0,
+    withdrawalFee: '0%',
+    balance: 0,
+    userBalance: 0,
+    URL: '',
+    active: true,
+    source: 'Plenty LP',
+    rewards: '1000 PLENTY / DAY',
+    isDualFarm: false,
+  },
+  'kUSD / USDt LP': {
+    image: kusdusdt,
+    harvestImg: plentyToken,
+    multi: '100',
+    title: 'kUSD / USDt PNLP',
+    apr: 0,
+    apy: 0,
+    earn: 'PLENTY',
+    fee: '0%',
+    earned: 0,
+    deposit: 'kUSD / USDt LP',
+    liquidity: 0,
+    withdrawalFee: '0%',
+    balance: 0,
+    userBalance: 0,
+    URL: '',
+    active: true,
+    source: 'Plenty LP',
+    rewards: '1000 PLENTY / DAY',
+    isDualFarm: false,
+  },
+  'uUSD / USDt LP': {
+    image: uusdusdt,
+    harvestImg: plentyToken,
+    multi: '100',
+    title: 'uUSD / USDt PNLP',
+    apr: 0,
+    apy: 0,
+    earn: 'PLENTY',
+    fee: '0%',
+    earned: 0,
+    deposit: 'uUSD / USDt LP',
     liquidity: 0,
     withdrawalFee: '0%',
     balance: 0,

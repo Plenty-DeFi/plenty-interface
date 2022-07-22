@@ -1865,6 +1865,7 @@ export const getTokenPrices = async () => {
       'PAUL',
       'DOGA',
       'EURL',
+      'USDt'
     ];
     const tokenAddress = {
       PLENTY: {
@@ -1956,6 +1957,9 @@ export const getTokenPrices = async () => {
       },
       EURL: {
         contractAddress: 'KT1JBNFcB5tiycHNdYGYCtR3kk6JaJysUCi8',
+      },
+      USDt: {
+        contractAddress: 'KT1XnTn74bUtxHfDtBmm2bGZAQfhPbvKWR8o',
       },
     };
     for (const i in tokenPriceResponse.contracts) {

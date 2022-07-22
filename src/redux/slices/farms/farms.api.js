@@ -1277,6 +1277,106 @@ const getPriceForPlentyLpTokens = async (
         totalAmount,
       };
     }
+    else if (identifier === 'kUSD - USDt'){
+      const token1Pool = parseInt(storageResponse.data.args[1].args[0].args[1].int);
+      const token2Pool = parseInt(storageResponse.data.args[3].int);
+      const lpTokenTotalSupply = parseInt(storageResponse.data.args[0].args[0].args[2].int); 
+      
+      const tokenData = {};
+
+      let idx;
+      let idx2;
+      for (const x in tokenPricesData) {
+        if (tokenPricesData[x].symbol === 'kUSD') {
+          idx = x;
+        }
+        if (tokenPricesData[x].symbol === 'USDt') {
+          idx2 = x;
+        }
+        
+      }
+
+      tokenData['token1'] = {
+        tokenName: 'kUSD',
+        tokenValue: tokenPricesData[idx].usdValue,
+        tokenDecimal: 18,
+      };
+
+      tokenData['token2'] = {
+        tokenName: 'USDt',
+        tokenValue: tokenPricesData[idx2].usdValue,
+        tokenDecimal: 6,
+      };
+
+      let token1Amount = (Math.pow(10, lpTokenDecimal) * token1Pool) / lpTokenTotalSupply;
+
+      token1Amount =
+        (token1Amount * tokenData['token1'].tokenValue) /
+        Math.pow(10, tokenData['token1'].tokenDecimal);
+
+      let token2Amount = (Math.pow(10, lpTokenDecimal) * token2Pool) / lpTokenTotalSupply;
+
+      token2Amount =
+        (token2Amount * tokenData['token2'].tokenValue) /
+        Math.pow(10, tokenData['token2'].tokenDecimal);
+
+      const totalAmount = (token1Amount + token2Amount).toFixed(2);
+      return {
+        success: true,
+        identifier,
+        totalAmount,
+      };
+    }
+    else if (identifier === 'uUSD - USDt'){
+      const token1Pool = parseInt(storageResponse.data.args[1].args[0].args[1].int);
+      const token2Pool = parseInt(storageResponse.data.args[3].int);
+      const lpTokenTotalSupply = parseInt(storageResponse.data.args[0].args[0].args[2].int); 
+      
+      const tokenData = {};
+
+      let idx;
+      let idx2;
+      for (const x in tokenPricesData) {
+        if (tokenPricesData[x].symbol === 'uUSD') {
+          idx = x;
+        }
+        if (tokenPricesData[x].symbol === 'USDt') {
+          idx2 = x;
+        }
+        
+      }
+
+      tokenData['token1'] = {
+        tokenName: 'uUSD',
+        tokenValue: tokenPricesData[idx].usdValue,
+        tokenDecimal: 12,
+      };
+
+      tokenData['token2'] = {
+        tokenName: 'USDt',
+        tokenValue: tokenPricesData[idx2].usdValue,
+        tokenDecimal: 6,
+      };
+
+      let token1Amount = (Math.pow(10, lpTokenDecimal) * token1Pool) / lpTokenTotalSupply;
+
+      token1Amount =
+        (token1Amount * tokenData['token1'].tokenValue) /
+        Math.pow(10, tokenData['token1'].tokenDecimal);
+
+      let token2Amount = (Math.pow(10, lpTokenDecimal) * token2Pool) / lpTokenTotalSupply;
+
+      token2Amount =
+        (token2Amount * tokenData['token2'].tokenValue) /
+        Math.pow(10, tokenData['token2'].tokenDecimal);
+
+      const totalAmount = (token1Amount + token2Amount).toFixed(2);
+      return {
+        success: true,
+        identifier,
+        totalAmount,
+      };
+    }
     else if (identifier === 'USDT.e - USDC.e'){
       const token1Pool = parseInt(storageResponse.data.args[1].args[0].args[1].int);
       const token2Pool = parseInt(storageResponse.data.args[3].int);
@@ -1557,7 +1657,9 @@ export const getFarmsDataAPI = async (isActive) => {
           key === 'LINK.e - CTEZ' ||
           key === 'USDtz - USDC.e' ||
           key === 'USDT.e - USDC.e' ||
-          key === 'EURL - agEUR.e'
+          key === 'EURL - agEUR.e' ||
+          key === 'uUSD - USDt' ||
+          key === 'kUSD - USDt'
         ) {
           dexPromises.push(
             getPriceForPlentyLpTokens(
